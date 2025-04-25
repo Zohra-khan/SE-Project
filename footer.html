@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Footer with Social Icons and Links</title>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Styling for the footer */
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 columns */
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+      background-color: #f8f8f8;
+    }
+
+    /* Styling for the left section (Logo and Social Icons) */
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    /* Styling for the right section (Links) */
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    /* Styling for the links list */
+    .footer-right ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin-left: 0;
+    }
+
+    .footer-right li {
+      margin: 5px 0;
+    }
+
+    /* Styling for the links */
+    .footer-right a {
+      text-decoration: none;
+      color: black;
+      font-size: 14px;
+    }
+
+    .footer-right a:hover {
+      text-decoration: underline;
+    }
+
+    /* Social icons styling */
+    .social-icons a {
+      color: black;
+      margin-right: 10px;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    /* Empty column styles for now */
+    .footer-empty {
+      background-color: transparent;
+    }
+
+    /* Third Column: Branches */
+    .footer-branches {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .footer-branches h3 {
+      color: maroon;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+    }
+
+    .footer-branches ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 5px;
+    }
+
+    .footer-branches li {
+      color: grey;
+      margin: 5px 0;
+    }
+
+    /* Fourth Column: Partners and Contact */
+    .footer-partners {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .footer-partners h3 {
+      color: maroon;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 10px;
+    }
+
+    .footer-partners .partner-logos img {
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    .footer-partners .contact-info img {
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .footer-partners .contact-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Stack vertically */
+      margin-top: 5px;
+    }
+
+    /* New line spacing */
+    .footer-partners .contact-info h4 {
+      margin-bottom: 20px; /* Adds margin below "Contact Us" */
+    }
+
+    /* Styling for mail and phone logos with text */
+    .footer-partners .contact-info div {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .footer-partners .contact-info img {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Pink Line Before Footer -->
+<hr style="border-top: 2px solid pink; margin-top: 50px;">
+
+<!-- Footer Section -->
+<footer>
+  <div class="footer-container">
+
+    <!-- Left Column: Logo + Social Icons + Copyright -->
+    <div class="footer-left">
+      <!-- Logo -->
+      <img src="SoiDhaga1.png" alt="SoiDhaga Logo" style="height: 110px; width: 200px;">
+
+      <!-- Social Icons -->
+      <div style="margin-top: 10px;" class="social-icons">
+        <a href="#">
+          <i class="fab fa-instagram fa-lg"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-youtube fa-lg"></i>
+        </a>
+        <a href="#">
+          <i class="fab fa-linkedin fa-lg"></i>
+        </a>
+      </div>
+
+      <!-- Copyright -->
+      <div style="margin-top: 15px; font-family: Arial, sans-serif; font-size: 14px; color: black;">
+        &copy; 2025 SoiDhaga. All Rights Reserved
+      </div>
+    </div>
+
+    <!-- Second Column: Links -->
+    <div class="footer-right">
+      <ul>
+        <li><a href="#">Customer Care</a></li>
+        <li><a href="#">Order Tracking</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Order Cancellation Policy</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Terms of Exchange</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Third Column: Our Branches -->
+    <div class="footer-branches">
+      <h3>Our Branches</h3>
+      <ul>
+        <li>Lahore</li>
+        <li>Islamabad</li>
+        <li>Karachi</li>
+        <li>London</li>
+        <li>New York</li>
+        <li>Toronto</li>
+      </ul>
+    </div>
+
+    <!-- Fourth Column: Partners and Contact -->
+    <div class="footer-partners">
+      <h3>Our Partners</h3>
+      <!-- Partner logos -->
+      <div class="partner-logos">
+        <img src="visa.png" alt="VISA Logo">
+        <img src="masterCard.png" alt="MasterCard Logo">
+        <img src="payPal.png" alt="PayPal Logo">
+      </div>
+      
+      <!-- Courier logos -->
+      <div class="partner-logos">
+        <img src="fedx.png" alt="FedEx Logo">
+        <img src="lep.png" alt="Leopard Couriers Logo">
+      </div>
+
+      <!-- Contact Information -->
+      <div class="contact-info">
+        <h4 style="color: maroon; font-weight: bold;">Contact Us</h4>
+        <div>
+          <img src="mailfooter.png" alt="Mail Logo" style="height: 20px;">
+          <span style="margin-left: 10px;">soiDhaga@gmail.com</span>
+        </div>
+        <div>
+          <img src="phonefooter.png" alt="Phone Logo" style="height: 20px;">
+          <span style="margin-left: 10px;">111-222-333</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
