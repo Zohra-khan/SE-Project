@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>SoiDhaga Header</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       margin: 0;
@@ -18,8 +17,7 @@
       align-items: center;
       padding: 12px 24px;
       background-color: #f8f8f8;
-      border-bottom: none;
-border-bottom: 2px solid pink; 
+      border-bottom: 2px solid #800000;
     }
 
     .logo img {
@@ -47,10 +45,11 @@ border-bottom: 2px solid pink;
       opacity: 0.6;
     }
 
-    .icon {
-      font-size: 22px;
+    .icon-img {
+      height: 30px;
+      width: 30px;
+      object-fit: contain;
       cursor: pointer;
-      color: #d63384;
     }
 
     .menu-button {
@@ -68,23 +67,37 @@ border-bottom: 2px solid pink;
       background-color: #f8f8f8;
     }
 
+    a {
+      text-decoration: none;
+    }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <div class="logo">
-      <img src="SoiDhaga1.png" alt="SoiDhaga Logo">
+<header>
+  <div class="logo">
+    <img src="SoiDhaga1.png" alt="SoiDhaga Logo">
+  </div>
+
+  <div class="header-right">
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
     </div>
-    <div class="header-right">
-      <div class="search-bar">
-        <input type="text" placeholder="Search...">
-      </div>
-      <i class="far fa-heart icon" title="Wishlist"></i>
-      <i class="fas fa-cart-shopping icon" title="Cart"></i>
-      <button class="menu-button" onclick="history.back()">Back</button>
-    </div>
-  </header>
+
+    <!-- Wishlist link with heart image -->
+    <a href="wishlist.html" target="_parent">
+  <img src="heart.png" class="icon" alt="Wishlist" title="Wishlist" style="width: 24px; height: 24px;">
+</a>
+    <!-- Cart link with cart image -->
+<a href="cart.html" target="_parent">
+  <img src="cartpic.png" class="icon" alt="Cart" title="Cart" style="width: 24px; height: 24px;">
+</a>
+
+
+    <button class="menu-button" onclick="history.back()">Back</button>
+  </div>
+</header>
 
 </body>
 </html>
