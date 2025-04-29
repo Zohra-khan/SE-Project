@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SoiDhaga Header</title>
+  <title>SoiDhaga</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     html, body {
@@ -111,10 +111,10 @@
       color: black;
     }
 
-    /* Pink line between items */
+    /* line between items */
     .sidebar hr {
       border: 0;
-      border-top: 2px solid pink;
+      border-top: 2px solid #800000;
       margin: 10px 0;
     }
 
@@ -288,7 +288,7 @@
   font-family: 'Times New Roman', Times, serif;
   font-size: 30px;
   font-weight: bold;
-  color: maroon;  /* Changed color to maroon */
+  color: maroon;
   margin-top: 40px;
   margin-bottom: 40px;
 }
@@ -318,8 +318,13 @@
       <div class="search-bar">
         <input type="text" placeholder="Search...">
       </div>
-      <i class="far fa-heart icon" title="Wishlist"></i>
-      <i class="fas fa-cart-shopping icon" title="Cart"></i>
+      <a href="wishlist.html">
+  <img src="heart.png" class="icon" alt="Wishlist" title="Wishlist" style="width: 24px; height: 24px;">
+</a>
+<a href="cart.html">
+  <img src="cartpic.png" class="icon" alt="Cart" title="Cart" style="width: 24px; height: 24px;">
+</a>
+
       <button class="menu-button" onclick="openNav()">Menu</button>
     </div>
   </header>
@@ -327,15 +332,15 @@
   <!-- The Sidebar -->
   <div id="mySidebar" class="sidebar">
     <span href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</span>
-    <a href="#">Printkari</a>
+    <a href="printkari3.html" target="_parent">Printkari</a>
     <hr>  <!-- Pink horizontal line -->
-    <a href="#">Lawnkari</a>
+    <a href="printkari3.html" target="_parent">Lawnkari</a>
     <hr>  <!-- Pink horizontal line -->
-    <a href="#">Luxurykari</a>
+    <a href="printkari3.html" target="_parent">Luxurykari</a>
     <hr>  <!-- Pink horizontal line -->
-    <a href="#">Customer Care</a>
+    <a href="customer_care.html" target="_parent">Customer Care</a>
     <hr>  <!-- Pink horizontal line -->
-    <a href="#">FAQ</a>
+    <a href="FAQs.html" target="_parent">FAQ</a>
   </div>
 
   <!-- Dark background effect behind the sidebar -->
@@ -365,10 +370,12 @@
 fabric and elegant embroidery, designed for effortless<br>
  grace and comfort.
     </div>
+<a href="printkari3.html" target="_parent">
     <button class="lawnkari-button">Visit</button>
+</a>
   </div>
 
-  <hr> <!-- Pink line between LawnKari and PrintKari -->
+  <hr> <!--  line between LawnKari and PrintKari -->
 
   <!-- PrintKari Image and Text Section -->
   <div class="printkari-section">
@@ -381,7 +388,9 @@ fabric and elegant embroidery, designed for effortless<br>
 crafted on soft, breathable fabric for effortless<br> 
 elegance.
     </div>
+<a href="printkari3.html" target="_parent">
     <button class="printkari-button">Visit</button> <!-- PrintKari Visit button -->
+</a>
   </div>
 
   <hr> <!-- Pink line between PrintKari and LuxuryKari -->
@@ -396,10 +405,12 @@ elegance.
       LuxuryKari brings bold prints and expressive patterns<br> to life on luxe, breathable fabrics.<br>
  Where contemporary silhouettes meet artisanal detail<br> — effortless sophistication for every day.
     </div>
+<a href="printkari3.html" target="_parent">
     <button class="luxurykari-button">Visit</button>
+</a>
   </div>
 
-<iframe src="newsletter.html" style="width:100%; border:none; margin-top:40px;" height="350"></iframe>
+<iframe src="newsletter.html" style="width: 100%; height: 340px; border: none;" scrolling="no"></iframe>
 
   <script>
     // Function to open the sidebar
@@ -418,8 +429,6 @@ elegance.
   </script>
 
 <iframe src="footer.html" style="width: 100%; height: 340px; border: none;" scrolling="no"></iframe>
-
-
 
 </body>
 </html>
