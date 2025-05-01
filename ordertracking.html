@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Tracking | SoiDhaga</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+    }
+
+    .track-container {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .track-header {
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      color: #800000;
+    }
+
+    .track-header i {
+      color: #800000;
+      margin-left: 10px;
+    }
+
+    .track-divider {
+      height: 1px;
+      background-color: #ddd;
+      margin: 10px 0 40px;
+    }
+
+    .track-box {
+      border: 1px solid #f2f2f2;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+      background-color: white;
+    }
+
+    .track-box .icon-circle {
+      background-color: #ffe5e5;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .track-box .icon-circle i {
+      color: #d63384;
+      font-size: 24px;
+    }
+
+    .track-box p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .track-box input {
+      padding: 10px 16px;
+      width: 80%;
+      border: 2px solid #d63384;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #800000;
+    }
+
+    .track-box .btn {
+      background-color: #800000;
+      color: white;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .track-box .btn:hover {
+      background-color: #a00000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <iframe src="header.html" scrolling="no"></iframe>
+
+  <!-- Order Tracking Content -->
+  <div class="track-container">
+    <div class="track-header">
+      Track Your Order <i class="fa-solid fa-box"></i>
+    </div>
+    <div class="track-divider"></div>
+
+    <div class="track-box">
+      <div class="icon-circle">
+        <i class="fa-solid fa-truck"></i>
+      </div>
+      <p>Enter your Order Number to track the status</p>
+      <input type="text" placeholder="Enter Order Number" />
+      <br>
+      <button class="btn">Track Order</button>
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <iframe src="newsletter.html" style="margin-top:40px;" height="350"></iframe>
+
+  <!-- Footer -->
+  <iframe src="footer.html" height="340" scrolling="no"></iframe>
+
+</body>
+</html>

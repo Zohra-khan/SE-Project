@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Tracking | SoiDhaga</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
+
+    .header {
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 16px;
+    }
+
+    .header h2 {
+      font-size: 24px;
+      color: #800000;
+    }
+
+    .order-info {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .badge {
+      background-color: #e6f4ea;
+      color: #2e7d32;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    .stepper {
+      display: flex;
+      justify-content: space-between;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .stepper::before {
+      content: '';
+      position: absolute;
+      top: 22px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #ddd;
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .step .circle {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+      background-color: #ccc;
+      color: white;
+      border-radius: 50%;
+      line-height: 40px;
+      font-size: 18px;
+    }
+
+    .step.completed .circle {
+      background-color: #800000;
+    }
+
+    .step p {
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .info-block h4 {
+      margin-bottom: 10px;
+      color: #800000;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .summary {
+      margin-top: 30px;
+    }
+
+    .summary h4 {
+      margin-bottom: 10px;
+      color: #800000;
+    }
+
+    .summary table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .summary table td {
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .summary table tr:last-child td {
+      font-weight: bold;
+    }
+
+    .summary .discount {
+      color: #2e7d32;
+    }
+
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <iframe src="header.html" height="180" scrolling="no"></iframe>
+
+  <div class="container">
+    <div class="header">
+      <h2>Order ID: 335465465454526</h2>
+      <div class="order-info">
+        Order Date: Feb 10, 2022 |
+        <span class="badge">Estimated delivery: May 16, 2022</span>
+      </div>
+    </div>
+
+    <div class="stepper">
+      <div class="step completed">
+        <div class="circle"><i class="fas fa-check"></i></div>
+        <p>Order Confirmed</p>
+        <p>Wed, 11 Jan</p>
+      </div>
+      <div class="step completed">
+        <div class="circle"><i class="fas fa-box"></i></div>
+        <p>Shipped</p>
+        <p>Wed, 11 Jan</p>
+      </div>
+      <div class="step">
+        <div class="circle"><i class="fas fa-truck"></i></div>
+        <p>Out for Delivery</p>
+        <p>Wed, 11 Jan</p>
+      </div>
+      <div class="step">
+        <div class="circle"><i class="fas fa-home"></i></div>
+        <p>Delivered</p>
+        <p>Expected: 16 May</p>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-block">
+        <h4>Payment</h4>
+        <p>Via: Visa<br>**** **** **** 1234</p>
+      </div>
+      <div class="info-block">
+        <h4>Delivery</h4>
+        <p>B47 Jewelers Bridge Apt.<br>1744 Leeville, USA<br>+1 249-789-3919</p>
+      </div>
+      <div class="info-block">
+        <h4>Courier Partner</h4>
+        <p>FedEx<br>Cheetah Logistics</p>
+      </div>
+    </div>
+
+    <div class="products">
+      <div class="product-card">
+        <img src="zephyr-1.png" alt="Kurta" />
+        <p>Zephyra<br>Rs. 20,990</p>
+      </div>
+      <div class="product-card">
+        <img src="Rai-1.png" alt="Dress" />
+        <p>Rai<br>Rs. 19,990</p>
+      </div>
+    </div>
+
+    <div class="summary">
+      <h4>Order Summary</h4>
+      <table>
+        <tr><td>Subtotal</td><td>Rs. 40,980</td></tr>
+        <tr><td>Discount</td><td class="discount">-Rs. 7,000</td></tr>
+        <tr><td>Delivery</td><td>Rs. 0.00</td></tr>
+        <tr><td>Tax (18%)</td><td>Rs. 6,116.40</td></tr>
+        <tr><td>Total</td><td>Rs. 40,096.40</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <iframe src="newsletter.html" style="margin-top:40px;" height="350"></iframe>
+
+  <!-- Footer -->
+  <iframe src="footer.html" height="340" scrolling="no"></iframe>
+
+</body>
+</html>
