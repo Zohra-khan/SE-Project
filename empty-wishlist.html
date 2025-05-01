@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wishlist | SoiDhaga</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+    }
+    .wishlist-container {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .wishlist-header {
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      color: #800000;
+    }
+
+    .wishlist-header i {
+      color: #800000;
+      margin-left: 10px;
+    }
+
+    .wishlist-divider {
+      height: 1px;
+      background-color: #ddd;
+      margin: 10px 0 40px;
+    }
+
+    .empty-wishlist-box {
+      border: 1px solid #f2f2f2;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    .empty-wishlist-box .icon-circle {
+      background-color: #ffe5e5;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .empty-wishlist-box .icon-circle i {
+      color: #d63384;
+      font-size: 24px;
+    }
+
+    .empty-wishlist-box p {
+      margin: 10px 0;
+    }
+
+    .empty-wishlist-box .btn {
+      margin-top: 20px;
+      background-color: #800000;
+      color:#800000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      color:white;
+    }
+
+    .empty-wishlist-box .btn:hover {
+      background-color: #800000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <iframe src="header.html" scrolling="no"></iframe>
+
+  <!-- Wishlist Content -->
+  <div class="wishlist-container">
+    <div class="wishlist-header">
+      Wish List <i class="fa-regular fa-heart"></i>
+    </div>
+    <div class="wishlist-divider"></div>
+
+    <div class="empty-wishlist-box">
+      <div class="icon-circle">
+        <i class="fa-solid fa-heart"></i>
+      </div>
+      <p style="color:#d63384;font-size:25px ;"><strong>Your wishlist is empty.</strong></p>
+      <p>Start exploring products and add your favorites to keep track of what you love!</p>
+      <a href="#" class="btn">Continue Shopping</a>
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <iframe src="newsletter.html" style="margin-top:40px;" height="350"></iframe>
+
+  <!-- Footer -->
+  <iframe src="footer.html" height="340" scrolling="no"></iframe>
+
+</body>
+</html>
