@@ -75,16 +75,6 @@
       margin-bottom: 20px;
     }
 
-    .track-box input {
-      padding: 10px 16px;
-      width: 80%;
-      border: 2px solid #d63384;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      font-size: 16px;
-      color: #800000;
-    }
-
     .track-box .btn {
       background-color: #800000;
       color: white;
@@ -100,6 +90,43 @@
     .track-box .btn:hover {
       background-color: #a00000;
     }
+
+    .track-link {
+      font-size: 16px;
+      color: #007bff;
+      margin-top: 15px;
+    }
+
+    .track-header a {
+      color: #d63384;
+      text-decoration: none;
+    }
+
+    .track-header a:hover {
+      text-decoration: underline;
+    }
+
+    .track-link a {
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .track-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Styling for the Leopard Courier image */
+    .leopard-img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .track-header img {
+      max-width: 150px;
+      margin-right: 10px;
+    }
+
   </style>
 </head>
 <body>
@@ -109,19 +136,22 @@
 
   <!-- Order Tracking Content -->
   <div class="track-container">
+    <!-- Order Tracking Heading -->
     <div class="track-header">
       Track Your Order <i class="fa-solid fa-box"></i>
     </div>
+    
     <div class="track-divider"></div>
 
+    <!-- Leopard Courier Section -->
     <div class="track-box">
-      <div class="icon-circle">
-        <i class="fa-solid fa-truck"></i>
+      <img class="leopard-img" src="lep.png" alt="Leopard Courier Logo" />
+      <div class="track-header">
+        <a href="https://www.leopardscourier.com/leopards-tracking" target="_blank">
+          <strong>Track Your Order on Leopard Courier</strong>
+        </a>
       </div>
-      <p>Enter your Order Number to track the status</p>
-      <input type="text" placeholder="Enter Order Number" />
-      <br>
-     <button class="btn" onclick="window.location.href='OrderTrackingProcess.html'">Track Order</button>
+      <p>Click the link above in PINK to go directly to Leopard Courier's official tracking page. Once there, just enter your order number to track your shipment in real-time.</p>
     </div>
   </div>
 
