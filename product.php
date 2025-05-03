@@ -394,7 +394,7 @@ table th {
       <h3 style="color: #800000;"><?php echo $row['name']; ?></h3> <!-- Updated to use fetched product name -->
         <p style="color: gray;"><?php echo $row['code']; ?></p>
         <p><strong style="color: green;">AVAILABILITY:</strong> In Stock</p>
-        <p style="font-size: 24px; color: #d63384; font-weight: bold;">RS.<?php echo $row['price']; ?></p>
+        <p style="font-size: 24px; color: #d63384; font-weight: bold;">RS.<?php echo $row['price']; ?>*</p>
         <p style="font-size: 12px; color: #080860;">*Prices are inclusive of GST</p>
         <p><i class="far fa-heart" style="color: #d63384;"></i> Add to Wishlist</p>
 
@@ -404,14 +404,12 @@ table th {
         </div>
         <div>
             <span><strong>Size:</strong></span><br>
-            <button class="size-btn"><strong>XS</strong></button>
-            <button class="size-btn"><strong>S</strong></button>
-            <button class="size-btn"><strong>M</strong></button>
-            <button class="size-btn"><strong>L</strong></button>
-            <button class="size-btn"><strong>XL</strong></button>
-          </div>
-          
-
+            <button class="size-btn" data-size="XS"><strong>XS</strong></button>
+            <button class="size-btn" data-size="S"><strong>S</strong></button>
+            <button class="size-btn" data-size="M"><strong>M</strong></button>
+            <button class="size-btn" data-size="L"><strong>L</strong></button>
+            <button class="size-btn" data-size="XL"><strong>XL</strong></button>
+        </div>
         <div style="margin-top: 20px;">
           <button class="btn-primary">Buy Now</button>
           <button class="btn-secondary">Add To Cart</button>
@@ -597,7 +595,6 @@ img.addEventListener('dblclick', () => {
 
   </script>
   <script>
-    // Show animation when "Customers Also Like" is in view
     window.addEventListener('scroll', () => {
       const section = document.getElementById('customers-scroll');
       const rect = section.getBoundingClientRect();
@@ -606,5 +603,66 @@ img.addEventListener('dblclick', () => {
       }
     });
   </script>
+  <script>
+let selectedSize = null;
+
+// Handle size selection
+document.querySelectorAll('.size-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    selectedSize = this.getAttribute('data-size');
+
+    // Visually indicate the selected button
+    document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('selected'));
+    this.classList.add('selected');
+  });
+});
+
+document.querySelector('.btn-primary').addEventListener('click', function(event) {
+  if (!selectedSize) {
+    alert("Please select a size before buying.");
+    event.preventDefault(); // Stop 
+    return false;
+  }
+});
+</script>
+<script>
+let selectedSize = null;
+
+// Handle size button selection
+document.querySelectorAll('.size-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    // Remove highlight from all
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+    
+    // Add highlight to the clicked one
+    this.classList.add('selected');
+    selectedSize = this.getAttribute('data-size');
+  });
+});
+
+// Handle Add to Cart button
+document.querySelector('.btn-secondary').addEventListener('click', function (e) {
+  if (!selectedSize) {
+    alert('Please select a size before adding to cart.');
+    return;
+  }
+
+  // If you want to proceed with form submission or AJAX, you can do that here
+  console.log("Selected Size:", selectedSize);
+  // Example: submit form or call API to add to cart
+});
+</script>
+
+<style>
+.size-btn.selected {
+  background-color: #d63384;
+  color: white;
+}
+.size-btn.selected {
+  background-color: #d63384;
+  color: white;
+}
+</style>
+
 </body>
 </html>
