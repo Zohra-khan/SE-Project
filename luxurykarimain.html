@@ -1,162 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>LuxuryKari-2025 - SoiDhaga</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-background-color: #f8f8f8;
-    }
+    <meta charset="UTF-8">
+    <title>LuxuryKari-2025 - SoiDhaga</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f8f8f8;
+        }
 
-    .icons img {
-      height: 24px;
-      margin-left: 1rem;
-    }
+        .container {
+            padding: 2rem;
+        }
 
-    .icons button {
-      margin-left: 1rem;
-      padding: 0.4rem 0.6rem;
-    }
+        .heading {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
 
-    .container {
-      padding: 2rem;
-background-color: #f8f8f8;
-    }
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
 
-    .heading {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-background-color: #f8f8f8;
-    }
+            .filters select {
+                padding: 0.5rem;
+            }
 
-    .filters {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-background-color: #f8f8f8;
-    }
+        .product-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
 
-    .filters select {
-      padding: 0.5rem;
-    }
+        .product-card {
+            text-decoration: none;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 2rem;
-background-color: #f8f8f8;
-    }
+            .product-card:hover {
+                transform: scale(1.02);
+            }
 
-    .card {
-      text-align: center;
-    }
+            .product-card img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 6px;
+                margin-bottom: 0.5rem;
+            }
 
-    .card img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
+            .product-card .name {
+                color: #333;
+                font-weight: bold;
+                font-size: 1rem;
+            }
 
-    .card-title {
-      font-weight: bold;
-      margin: 0.5rem 0 0.2rem;
-    }
+        iframe.header,
+        iframe.footer,
+        iframe.newsletter {
+            width: 100%;
+            border: none;
+        }
 
-    .price {
-      color: #333;
-    }
+        iframe.header {
+            height: 150px;
+        }
 
-    .newsletter {
-      text-align: center;
-      margin-top: 4rem;
-    }
+        iframe.footer {
+            height: 340px;
+        }
 
-  </style>
+        iframe.newsletter {
+            height: 350px;
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
 
- <iframe src="header.html" style="width:100%; height:150px; border:none;" scrolling="no"></iframe>
+    <iframe class="header" src="header.html" scrolling="no"></iframe>
 
-  <!-- Main Content -->
-  <div class="container">
-    <div class="heading">LuxuryKari-2025</div>
+    <div class="container">
+        <div class="heading">LuxuryKari-2025</div>
 
-    <!-- Filters -->
-    <div class="filters">
-      <select><option>CO-ORD Sets</option></select>
-      <select><option>Sort by</option></select>
-      <select><option>Filter</option></select>
+        <!-- Filters -->
+        <div class="filters">
+            <select><option>CO-ORD Sets</option></select>
+            <select><option>Sort by</option></select>
+            <select><option>Filter</option></select>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="product-links">
+            <a href="product.php?name=Auristal-1A" class="product-card">
+                <img src="Auristal-1.png" alt="Auristal">
+                <div class="name">Auristal</div>
+            </a>
+            <a href="product.php?name=Caelora-2A" class="product-card">
+                <img src="Caelora-1.png" alt="Caelora">
+                <div class="name">Caelora</div>
+            </a>
+            <a href="product.php?name=Elysora-6A" class="product-card">
+                <img src="Elysora-1.png" alt="Elysora">
+                <div class="name">Elysora</div>
+            </a>
+            <a href="product.php?name=Lunavia-6A" class="product-card">
+                <img src="Lunavia-1.png" alt="Lunavia">
+                <div class="name">Lunavia</div>
+            </a>
+            <a href="product.php?name=Marvessa-10A" class="product-card">
+                <img src="Marvessa-1.png" alt="Marvessa">
+                <div class="name">Marvessa</div>
+            </a>
+            <a href="product.php?name=Opulisse-2A" class="product-card">
+                <img src="Opulisse-1.png" alt="Opulisse">
+                <div class="name">Opulisse</div>
+            </a>
+            <a href="product.php?name=Seraphine-4A" class="product-card">
+                <img src="Seraphine-1.png" alt="Seraphine">
+                <div class="name">Seraphine</div>
+            </a>
+            <a href="product.php?name=Veloura-7A" class="product-card">
+                <img src="Veloura-1.png" alt="Veloura">
+                <div class="name">Veloura</div>
+            </a>
+            <a href="product.php?name=Velisse-6A" class="product-card">
+                <img src="Velisse-1.png" alt="Velisse">
+                <div class="name">Velisse</div>
+            </a>
+        </div>
+
+        <!-- Newsletter -->
+        <iframe class="newsletter" src="newsletter.html"></iframe>
     </div>
 
-    <!-- Products Grid -->
-    <div class="grid">
-      
-      <div class="card">
-        <img src="luxi1.png" alt="Product 1">
-        <div class="card-title">Veloura-Where Velvet Dreams Meet Timeless Elegance</div>
-        <div class="price">PKR 12,000</div>
-      </div>
-
-      <div class="card">
-        <img src="lux2.png" alt="Product 2">
-        <div class="card-title">Seraphine-Draping you in Celestial Sophistication</div>
-        <div class="price">PKR 9,000</div>
-      </div>
-
-      <div class="card">
-        <img src="lux3.png" alt="Product 3">
-        <div class="card-title">Lunavia-Fashion That Shimmers Under Every Moonlit Night</div>
-        <div class="price">PKR 12,000</div>
-      </div>
-
-      
-      <div class="card">
-        <img src="lux4.png" alt="Product 4">
-        <div class="card-title">Opulisse-A Symphony of Lavish Textures and Pure Refinement</div>
-        <div class="price">PKR 8,000</div>
-      </div>
-
-      <div class="card">
-        <img src="lux5.png" alt="Product 5">
-        <div class="card-title">Caelora-Clothing Crafted for Those Who Live Among the Stars</div>
-        <div class="price">PKR 9,000</div>
-      </div>
-
-      <div class="card">
-        <img src="lux6.png" alt="Product 6">
-        <div class="card-title">Velisse-A Whisper of Luxury Stitched into Every Thread</div>
-        <div class="price">PKR 12,000</div>
-      </div>
-
-      <div class="card">
-        <img src="lux7.png" alt="Product 7">
-        <div class="card-title">Auristal-Illuminating Style with A Golden Touch</div>
-        <div class="price">PKR 11,000</div>
-      </div>
-
-      <div class="card">
-        <img src="lux8.png" alt="Product 8">
-        <div class="card-title">Marvessa-Bold,Opulent and Unapologetically Divine</div>
-        <div class="price">PKR 12,000</div>
-      </div>
-
-      <div class="card">
-        <img src="lux9.png" alt="Product 9">
-        <div class="card-title">Elysora-Wardrobe Essentials for the Modern Muse</div>
-        <div class="price">PKR 10,000</div>
-      </div>
-    </div>
-
-    <iframe src="newsletter.html" style="width:100%; border:none; margin-top:40px;" height="350"></iframe>
-
-  </div>
-
-  <iframe src="footer.html" style="width: 100%; height: 340px; border: none;" scrolling="no"></iframe>
+    <iframe class="footer" src="footer.html" scrolling="no"></iframe>
 
 </body>
 </html>
