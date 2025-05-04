@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";       // change if your MySQL username is different
-$password = "";           // change if your MySQL password is set
-$dbname = "soidhaga-products"; // replace with your actual DB name
+$username = "root";    
+$password = "";        
+$dbname = "soidhaga-products"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -40,9 +40,12 @@ $stmt->bind_param(
 );
 
 if ($stmt->execute()) {
-    echo "Order placed successfully!";
-    // Optionally redirect
-    // header("Location: successfulPurchase.html");
+    if ($payment_method === 'credit card') {
+        header("Location: cardInfo.html");
+    } else {
+        header("Location: successfulPurchase.php");
+    }
+    exit;
 } else {
     echo "Error: " . $stmt->error;
 }
