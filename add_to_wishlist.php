@@ -16,7 +16,26 @@ if (isset($_POST['product_id'])) {
     $product_id = $_POST['product_id'];
     $session_id = session_id();
 
-    // Check if item is already in wishlist
+    // Step 1: Check if wishlist has entries with a different session_id
+    $check_session = $conn->prepare("SELECT DISTINCT session_id FROM wishlist");
+    $check_session->execute();
+    $result = $check_session->get_result();
+
+    $clear_needed = false;
+    while ($row = $result->fetch_assoc()) {
+        if ($row['session_id'] !== $session_id) {
+            $clear_needed = true;
+            break;
+        }
+    }
+
+    // Step 2: Clear wishlist if needed
+    if ($clear_needed) {
+        $delete = $conn->prepare("DELETE FROM wishlist");
+        $delete->execute();
+    }
+
+    // Step 3: Check if the product is already in wishlist for this session
     $check = $conn->prepare("SELECT * FROM wishlist WHERE session_id = ? AND product_id = ?");
     $check->bind_param("ss", $session_id, $product_id);
     $check->execute();
