@@ -1,38 +1,31 @@
 <?php
 session_start();
-$session_id = session_id(); // Get the current session ID
+$session_id = session_id();
 
-// Database connection parameters
+// Database connection
 $host = "localhost";
 $user = "root";
 $password = "";
 $database = "soidhaga-products";
-
-// Create a new connection to the database
 $conn = new mysqli($host, $user, $password, $database);
-
-// Check for connection error
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch wishlist items for the current session
+// Fetch wishlist items
 $sql = "SELECT p.name, p.price, p.url1, p.code, w.wishlist_id
         FROM wishlist w 
         JOIN products p ON w.product_id = p.code
         WHERE w.session_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $session_id); // Bind session ID to the query
+$stmt->bind_param("s", $session_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// If no items are in the wishlist
 if ($result->num_rows === 0) {
     header("Location: empty-wishlist.html");
-    exit; // Ensure no further code is executed
+    exit;
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +33,7 @@ if ($result->num_rows === 0) {
 <head>
   <meta charset="UTF-8">
   <title>Wish List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -49,9 +43,9 @@ if ($result->num_rows === 0) {
     }
 
     .container {
-      width: 50%;
       max-width: 1200px;
       margin: 0 auto;
+      text-align: center;
     }
 
     .wishlist-heading {
@@ -83,18 +77,25 @@ if ($result->num_rows === 0) {
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: space-between;
+      gap: 20px;
     }
 
     .wishlist-item img {
       height: 100px;
-      width: auto;
+      width: 100px;
+      object-fit: cover;
       border-radius: 5px;
     }
 
     .item-details {
-      margin-left: 20px;
-      margin-right: 20px;
+      text-align: left;
       flex-grow: 1;
+      max-width: 160px;
+      margin-left: 20px;
     }
 
     .item-details p {
@@ -104,36 +105,33 @@ if ($result->num_rows === 0) {
 
     .item-price {
       font-weight: bold;
-      margin-right: 50px;
-      min-width: 100px;
-      text-align: center;
+      font-size: 18px;
+      margin-top: 10px;
     }
 
-    .add-to-cart-btn {
+    .item-actions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      margin-right: 10px;
+    }
+
+    .add-to-cart-btn,
+    .remove-item-btn {
       background-color: #d63384;
       color: white;
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
-    .add-to-cart-btn:hover {
-      background-color: black;
-    }
-.remove-item-btn {
-      background-color: #f8d7da;
-      color: #721c24;
-      border: none;
-      padding: 5px 10px;
+      padding: 8px 12px;
       border-radius: 5px;
       cursor: pointer;
       margin-bottom: 10px;
+      font-size: 14px;
     }
 
+    .add-to-cart-btn:hover,
     .remove-item-btn:hover {
-      background-color: #f5c6cb;
+      background-color: black;
     }
 
     .go-to-cart-btn {
@@ -154,51 +152,68 @@ if ($result->num_rows === 0) {
     .go-to-cart-btn:hover {
       background-color: black;
     }
+.remove-item-btn {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.remove-item-btn:hover {
+  background-color: #f5c6cb;
+}
+
+    iframe {
+      display: block;
+      width: 100%;
+      border: none;
+    }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
- <iframe src="header.html" style="width:100%; height:150px; border:none;" scrolling="no"></iframe>
+<iframe src="header.html" style="height:150px;" scrolling="no"></iframe>
 
- <div class="container">
-    <!-- Heading -->
-    <div class="wishlist-heading">
-      WISH LIST
-      <i class="fa-regular fa-heart"></i>
-    </div>
+<div class="container">
+  <div class="wishlist-heading">
+    Wish List
+    <i class="fa-regular fa-heart"></i>
+  </div>
 
-  <div class="wishlist-container">
-    <?php while ($item = $result->fetch_assoc()): ?>
-      <div class="wishlist-item">
-        <img src="<?= htmlspecialchars($item['url1']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
-        <div class="item-details">
-          <h3><?= htmlspecialchars($item['name']) ?></h3>
-          <p>Price: Rs <?= number_format($item['price']) ?></p>
-        </div>
-        <!-- Add to Cart Button Form -->
+  <div class="wishlist-line"></div>
+
+  <?php while ($item = $result->fetch_assoc()): ?>
+    <div class="wishlist-item">
+      <img src="<?= htmlspecialchars($item['url1']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
+      <div class="item-details">
+        <p><strong><?= htmlspecialchars($item['name']) ?></strong></p>
+        <div class="item-price">Rs <?= number_format($item['price']) ?></div>
+      </div>
+      <div class="item-actions">
+        <!-- Add to Cart -->
         <form method="POST" action="add_to_cart.php">
           <input type="hidden" name="product_id" value="<?= $item['code'] ?>">
-          <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+          <button class="add-to-cart-btn" type="submit">Add to Cart</button>
         </form>
-        <!-- Remove from Wishlist Button Form -->
-        <div class="item-actions">
-<!-- Remove from Wishlist Button Form -->
+
+        <!-- Remove from Wishlist -->
 <form method="POST" action="remove_from_wishlist.php">
-    <input type="hidden" name="wishlist_id" value="<?= htmlspecialchars($item['wishlist_id']) ?>"> <!-- Pass the wishlist_id -->
-    <button class="remove-item-btn" type="submit">Remove</button>
+  <input type="hidden" name="wishlist_id" value="<?= htmlspecialchars($item['wishlist_id']) ?>">
+  <button class="remove-item-btn" type="submit">Remove</button>
 </form>
       </div>
-    <?php endwhile; ?>
-  </div>
+    </div>
+  <?php endwhile; ?>
 
-    <!-- Go to Cart Button -->
-    <a href="cart.php" class="go-to-cart-btn">Go to Cart</a>
+  <a href="cart.php" class="go-to-cart-btn">Go to Cart</a>
 
-    <iframe src="newsletter.html" style="width:100%; border:none; margin-top:40px;" height="350"></iframe>
-  </div>
+  <iframe src="newsletter.html" style="height:350px; margin-top:40px;"></iframe>
+</div>
 
-  <iframe src="footer.html" style="width: 100%; height: 340px; border: none;" scrolling="no"></iframe>
+<iframe src="footer.html" style="height:340px;" scrolling="no"></iframe>
 
 </body>
 </html>
