@@ -237,7 +237,7 @@
         </div>
       </div>
 
-      <button class="place-order-button" type="submit">Place Order</button>
+<button class="place-order-button" type="button" onclick="placeOrder()">Place Order</button>
 </form>
   </div>
 
@@ -247,19 +247,19 @@
 
   <script>
     function placeOrder() {
-      const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
+const paymentMethod = document.querySelector('input[name="payment_method"]:checked');
 
       if (!paymentMethod) {
         alert("Please select a payment method.");
         return;
       }
 
-      if (paymentMethod.value === "cash-on-delivery") {
-        window.location.href = "successfulPurchase.html";
-      } else if (paymentMethod.value === "credit-card") {
+      if (paymentMethod.value === "cod") {
+        window.location.href = "SuccessfulPurchase.html";
+      } else if (paymentMethod.value === "credit card") {
         window.location.href = "cardInfo.html";
       } else if (paymentMethod.value === "paypal") {
-        window.location.href = "successfulPurchase.html";
+        window.location.href = "SuccessfulPurchase.html";
       }
     }
   </script>
