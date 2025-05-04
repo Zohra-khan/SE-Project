@@ -282,7 +282,7 @@ $subtotal = 0;
       <p>Rs <?= number_format($subtotal) ?></p>
     </div>
     <div class="button-container">
-      <a href="checkOut.html" class="proceed-btn">Proceed to Checkout</a>
+      <a href="checkOut.php" class="proceed-btn">Proceed to Checkout</a>
       <a href="main.html" class="continue-shopping-btn">Continue Shopping</a>
     </div>
   </div>
