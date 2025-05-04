@@ -19,6 +19,26 @@ if (isset($_POST['code']) && isset($_POST['quantity']) && isset($_POST['size']))
     $size = $_POST['size'];
     $session_id = session_id();
 
+    // Step 1: Check if there are cart entries from a different session_id
+    $check_session = $conn->prepare("SELECT DISTINCT session_id FROM cart");
+    $check_session->execute();
+    $result = $check_session->get_result();
+
+    $clear_needed = false;
+    while ($row = $result->fetch_assoc()) {
+        if ($row['session_id'] !== $session_id) {
+            $clear_needed = true;
+            break;
+        }
+    }
+
+    // Step 2: If needed, clear the cart table
+    if ($clear_needed) {
+        $delete = $conn->prepare("DELETE FROM cart");
+        $delete->execute();
+    }
+
+    // Step 3: Get product price
     $stmt = $conn->prepare("SELECT price FROM products WHERE code = ?");
     $stmt->bind_param("s", $product_code);
     $stmt->execute();
@@ -28,6 +48,7 @@ if (isset($_POST['code']) && isset($_POST['quantity']) && isset($_POST['size']))
         $price = (int)$row['price'];
         $total_price = $price * $quantity;
 
+        // Step 4: Check if this product with same size is already in cart
         $check_cart = $conn->prepare("SELECT * FROM cart WHERE session_id = ? AND product_code = ? AND size = ?");
         $check_cart->bind_param("sss", $session_id, $product_code, $size);
         $check_cart->execute();
@@ -44,6 +65,5 @@ if (isset($_POST['code']) && isset($_POST['quantity']) && isset($_POST['size']))
     }
 }
 
-// Return plain text message only
 echo $message;
 ?>
