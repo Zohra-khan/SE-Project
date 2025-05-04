@@ -122,26 +122,29 @@
 
 
   <!-- Main Content -->
-  <div class="container">
-    <h1>Customer Care</h1>
-    <p>
-      Our Complaint Box is your direct channel for sharing concerns, ensuring a fair, transparent resolution process...
-    </p>
+ <div class="container">
+     <h1>Customer Care</h1>
+     <p>
+         Our Complaint Box is your direct channel for sharing concerns, ensuring a fair, transparent resolution process...
+     </p>
 
-    <!-- Contact Form -->
-    <form>
-      <div style="display: flex; gap: 1rem;">
-        <input type="text" placeholder="First name" required>
-        <input type="text" placeholder="Last name" required>
-      </div>
-      <input type="email" placeholder="Email address" required>
-      <textarea rows="5" placeholder="Your complaint" required></textarea>
-      <button type="submit">Submit</button>
-    </form>
+     <!-- Contact Form -->
+     <!-- Contact Form -->
+     <form action="submit_complaint.php" method="POST">
+         <div style="display: flex; gap: 1rem;">
+             <input type="text" name="first_name" placeholder="First name" required>
+             <input type="text" name="last_name" placeholder="Last name" required>
+         </div>
+         <input type="email" name="email" placeholder="Email address" required>
+         <textarea name="complaint" rows="5" placeholder="Your complaint" required></textarea>
+         <button type="submit">Submit</button>
+     </form>
 
-    <iframe src="newsletter.html" style="width:100%; border:none; margin-top:40px;" height="350"></iframe>
 
-  </div>
+
+     <iframe src="newsletter.html" style="width:100%; border:none; margin-top:40px;" height="350"></iframe>
+
+ </div>
 
   <iframe src="footer.html" style="width: 100%; height: 340px; border: none;" scrolling="no"></iframe>
 
