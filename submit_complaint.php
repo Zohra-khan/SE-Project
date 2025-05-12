@@ -28,7 +28,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssss", $first_name, $last_name, $email, $complaint);
 
 if ($stmt->execute()) {
-    header("Location: submission.html");
+    header("Location: submission.php");
     exit();
 } else {
     echo "Error: " . $stmt->error;
