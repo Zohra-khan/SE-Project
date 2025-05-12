@@ -369,7 +369,7 @@ table th {
 <body>
 
   <!-- Header -->
-  <iframe src="header.html" style="height: auto;"scrolling="no"></iframe>
+<?php include 'header.php'; ?>
 
 
   <!-- Main Content -->
@@ -416,7 +416,9 @@ table th {
   <button class="size-btn" data-size="L"><strong>L</strong></button>
   <button class="size-btn" data-size="XL"><strong>XL</strong></button>
 </div>
-          
+      
+
+    
 
         <div style="margin-top: 20px;">
 <form method="POST" action="buy_now.php" style="display: inline;">
