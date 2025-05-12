@@ -22,18 +22,28 @@ $stmt->bind_param("s", $session_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-if ($result->num_rows === 0) {
-    header("Location: empty-wishlist.html");
-    exit;
-}
-
 // Display dialog if item is added to cart
 if (isset($_SESSION['cart_added'])) {
     echo "<script>
             alert('" . $_SESSION['cart_added'] . "');
           </script>";
-    // Clear the session message to prevent the dialog from appearing again
     unset($_SESSION['cart_added']);
+}
+
+// Display dialog if item is removed from wishlist
+if (isset($_SESSION['wishlist_message'])) {
+    echo "<script>
+            alert('" . $_SESSION['wishlist_message'] . "');
+          </script>";
+    unset($_SESSION['wishlist_message']);
+}
+
+// If no items are in the wishlist, redirect to empty-wishlist page
+if ($result->num_rows === 0) {
+    echo "<script>
+            window.location.href = 'empty-wishlist.php';
+          </script>";
+    exit;
 }
 ?>
 
@@ -64,18 +74,14 @@ if (isset($_SESSION['cart_added'])) {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 10px;
+      margin-bottom: 30px;
+      margin-top: 30px;
     }
 
     .wishlist-heading i {
       color: pink;
       margin-left: 10px;
       font-size: 26px;
-    }
-
-    .wishlist-line {
-      border-top: 2px solid grey;
-      margin: 10px 0 20px 0;
     }
 
     .wishlist-item {
@@ -127,38 +133,52 @@ if (isset($_SESSION['cart_added'])) {
     }
 
     .remove-item-btn {
-      background-color: #f8d7da;
-      color: #721c24;
+      background-color: #dc3545;
+      color: white;
       border: none;
       padding: 5px 10px;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 14px;
+      margin-bottom: 10px;
     }
 
     .remove-item-btn:hover {
-      background-color: #f5c6cb;
+      background-color: #c82333;
+    }
+
+    .goto-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .goto-btn:hover {
+      background-color: #218838;
     }
 
     .go-to-cart-btn {
-      display: block;
-      width: 200px;
-      margin: 30px auto;
-      padding: 12px;
       background-color: #d63384;
       color: white;
-      text-align: center;
-      font-size: 18px;
       border: none;
-      border-radius: 5px;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 18px;
       cursor: pointer;
+      width: 70%;
+      max-width: 400px;
       text-decoration: none;
+      margin-top: 30px;
+      display: inline-block;
+      text-align: center;
     }
 
     .go-to-cart-btn:hover {
       background-color: black;
     }
-    
+
     iframe {
       display: block;
       width: 100%;
@@ -168,7 +188,7 @@ if (isset($_SESSION['cart_added'])) {
 </head>
 <body>
 
-<iframe src="header.html" style="height:150px;" scrolling="no"></iframe>
+<?php include 'header.php'; ?>
 
 <div class="container">
   <div class="wishlist-heading">
@@ -176,24 +196,26 @@ if (isset($_SESSION['cart_added'])) {
     <i class="fa-regular fa-heart"></i>
   </div>
 
-  <div class="wishlist-line"></div>
-
   <?php while ($item = $result->fetch_assoc()): ?>
     <div class="wishlist-item">
-      <!-- Product image and name linked to product page using name -->
-      <a href="product.php?name=<?= urlencode($item['name']) ?>">
-        <img src="<?= htmlspecialchars($item['url1']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
-      </a>
+      <img src="<?= htmlspecialchars($item['url1']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
+
       <div class="item-details">
-        <p><strong><a href="product.php?name=<?= urlencode($item['name']) ?>"><?= htmlspecialchars($item['name']) ?></a></strong></p>
+        <p><strong><?= htmlspecialchars($item['name']) ?></strong></p>
         <div class="item-price">Rs <?= number_format($item['price']) ?></div>
       </div>
 
-      <!-- Remove from Wishlist -->
-      <form method="POST" action="remove_from_wishlist.php">
-        <input type="hidden" name="wishlist_id" value="<?= htmlspecialchars($item['wishlist_id']) ?>">
-        <button class="remove-item-btn" type="submit">Remove</button>
-      </form>
+      <div class="item-actions">
+        <form method="POST" action="remove_from_wishlist.php">
+          <input type="hidden" name="wishlist_id" value="<?= htmlspecialchars($item['wishlist_id']) ?>">
+          <button class="remove-item-btn" type="submit">Remove</button>
+        </form>
+
+        <form method="GET" action="product.php">
+          <input type="hidden" name="name" value="<?= htmlspecialchars($item['name']) ?>">
+          <button class="goto-btn" type="submit">Go to Product</button>
+        </form>
+      </div>
     </div>
   <?php endwhile; ?>
 
