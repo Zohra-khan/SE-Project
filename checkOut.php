@@ -82,7 +82,7 @@ margin-top:50px
     cursor: pointer;
     border-radius: 5px;
     white-space: nowrap; /* keep "Apply" label on one line */
-    font-size: 14px; /* Optionally, you can reduce the font size */
+    font-size: 14px;
     border: none; /* Remove the border */
 }
 
@@ -280,7 +280,7 @@ document.getElementById('apply-coupon').addEventListener('click', function () {
         if (data.status === 'valid') {
             alert(data.message);
 
-            // ✅ Step 2: Apply the coupon to cart (update total_price in DB)
+           
             return fetch('apply_coupon_code.php')
                 .then(res => res.json())
                 .then(applyData => {
@@ -289,7 +289,7 @@ document.getElementById('apply-coupon').addEventListener('click', function () {
                         alert("Failed to apply coupon to cart.");
                     } else {
                         console.log("Coupon applied to cart.");
-                        // Optionally update total display here
+                      
                     }
                 });
         } else {
