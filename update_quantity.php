@@ -25,14 +25,20 @@ if (isset($_POST['quantity']) && isset($_POST['product_code']) && is_numeric($_P
     $sql = "UPDATE cart SET quantity = ?, total_price = price * ? WHERE session_id = ? AND product_code = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("iiis", $quantity, $quantity, $session_id, $product_code);
-    $stmt->execute();
 
-    // Redirect back to the cart page
-    header("Location: cart.php");
-    exit;
+    if ($stmt->execute()) {
+        $_SESSION['cart_message'] = "Quantity updated successfully.";
+    } else {
+        $_SESSION['cart_message'] = "Failed to update quantity.";
+    }
+
+    $stmt->close();
 } else {
-    // Invalid input or quantity not set, redirect to the cart page
-    header("Location: cart.php");
-    exit;
+    $_SESSION['cart_message'] = "Invalid quantity or product code.";
 }
+
+// Redirect back to the cart page
+$conn->close();
+header("Location: cart.php");
+exit;
 ?>
