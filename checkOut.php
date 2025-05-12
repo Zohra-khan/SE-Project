@@ -19,6 +19,7 @@
       font-size: 28px;
       text-align: center;
       margin-bottom: 20px;
+margin-top:50px
     }
 
     .checkout-container {
@@ -82,6 +83,7 @@
     border-radius: 5px;
     white-space: nowrap; /* keep "Apply" label on one line */
     font-size: 14px; /* Optionally, you can reduce the font size */
+    border: none; /* Remove the border */
 }
 
 .apply-coupon button:hover {
@@ -107,7 +109,7 @@
   margin-top: 20px;
   width: 100%; /* make the button full width */
   max-width: 600px; /* ensure it doesn't get too wide on large screens */
-  margin-left: auto;  /* Centering the button horizontally */
+  margin-left: 50px;  /* Centering the button horizontally */
   margin-right: auto; /* Centering the button horizontally */
   transition: background-color 0.3s ease;
 }
@@ -146,8 +148,7 @@
 </head>
 <body>
 
-  <iframe src="header.html" style="width:100%; height:150px; border:none;" scrolling="no"></iframe>
-
+<?php include 'header.php'; ?>
 
   <!-- Checkout Heading -->
   <div class="checkout-heading">
@@ -160,17 +161,17 @@
       <!-- Contact Information Box -->
       <div class="checkout-box">
         <div class="box-title">Contact Information</div>
-        <div class="checkout-row">
-          <label for="first-name">First Name</label>
-<input type="text" id="first-name" name="first_name" required>
-        </div>
-        <div class="checkout-row">
-          <label for="last-name">Last Name</label>
-<input type="text" name="last_name" required>
-        </div>
+<div class="checkout-row">
+  <label for="first-name">First Name</label>
+  <input type="text" id="first-name" name="first_name" pattern="[A-Za-z]+" title="First name must contain letters only" required>
+</div>
+<div class="checkout-row">
+  <label for="last-name">Last Name</label>
+  <input type="text" name="last_name" pattern="[A-Za-z]+" title="Last name must contain letters only" required>
+</div>
         <div class="checkout-row">
           <label for="phone-number">Phone Number</label>
-<input type="tel" name="phone_number" required>
+<input type="tel" name="phone_number" pattern="\d{11}" maxlength="11" title="Phone number must be exactly 11 digits" required>
         </div>
         <div class="checkout-row">
           <label for="email-address">Email Address</label>
@@ -185,42 +186,45 @@
           <label for="street-address">Street Address</label>
 <input type="text" name="street_address" required>
         </div>
+
         <div class="checkout-row">
           <label for="country">Country</label>
-<input type="text" name="country" required>
+<input type="text" name="country" pattern="[A-Za-z]+" title="Country must contain letters only" required>
         </div>
+
         <div class="checkout-row">
           <label for="city">Town/City</label>
-<input type="text" name="city" required>
+<input type="text" name="city" pattern="[A-Za-z]+" title="City must contain letters only" required>
         </div>
+
         <div class="checkout-row">
           <label for="state">State</label>
-<input type="text" name="state" required>
+<input type="text" name="state" pattern="[A-Za-z]+" title="State must contain letters only" required>
         </div>
         <div class="checkout-row">
-          <label for="zip-code">Zip Code</label>
-<input type="text" name="zip" required>
-        </div>
-      </div>
+  <label for="zip-code">Zip Code</label>
+  <input type="text" name="zip" pattern="\d+" title="Zip code must contain only numbers" required>
+</div>
 
-      <!-- Payment Method Box -->
-      <div class="checkout-box">
-        <div class="box-title">Payment Method</div>
-        <div class="payment-method">
-          <div class="payment-option">
-<input type="radio" name="payment_method" value="credit card">
-            <label for="credit-card">Pay by Credit Card</label>
-          </div>
-          <div class="payment-option">
-<input type="radio" name="payment_method" value="paypal">
-            <label for="paypal">Paypal</label>
-          </div>
-          <div class="payment-option">
-<input type="radio" name="payment_method" value="cod">
-            <label for="cash-on-delivery">Cash on Delivery</label>
-          </div>
-        </div>
-      </div>
+
+  <div class="checkout-box">
+  <div class="box-title">Payment Method</div>
+  <div class="payment-method">
+    <div class="payment-option">
+      <input type="radio" name="payment_method" value="credit card" required>
+      <label for="credit-card">Pay by Credit Card</label>
+    </div>
+    <div class="payment-option">
+      <input type="radio" name="payment_method" value="paypal" required>
+      <label for="paypal">Paypal</label>
+    </div>
+    <div class="payment-option">
+      <input type="radio" name="payment_method" value="cod" required>
+      <label for="cash-on-delivery">Cash on Delivery</label>
+    </div>
+  </div>
+</div>
+
 
 <!-- Coupon Box -->
 <div class="checkout-box">
@@ -253,55 +257,51 @@ const paymentMethod = document.querySelector('input[name="payment_method"]:check
       }
     }
   </script>
+
 <script>
-document.getElementById('apply-coupon').addEventListener('click', function() {
+document.getElementById('apply-coupon').addEventListener('click', function () {
     const couponCode = document.getElementById('coupon-code').value.trim();
 
-    // Check if coupon code is entered
     if (!couponCode) {
         alert("Please enter a coupon code.");
         return;
     }
 
-    // Prepare data for AJAX request
     const formData = new FormData();
     formData.append('coupon_code', couponCode);
 
-    // Make the AJAX request to validate the coupon code
+    // Step 1: Validate the coupon
     fetch('validate_coupon.php', {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())  // Parse the response as JSON
+    .then(response => response.json())
     .then(data => {
         if (data.status === 'valid') {
-            alert(data.message);  // Coupon applied successfully
+            alert(data.message);
+
+            // ✅ Step 2: Apply the coupon to cart (update total_price in DB)
+            return fetch('apply_coupon_code.php')
+                .then(res => res.json())
+                .then(applyData => {
+                    if (applyData.status === 'error') {
+                        console.error(applyData.message);
+                        alert("Failed to apply coupon to cart.");
+                    } else {
+                        console.log("Coupon applied to cart.");
+                        // Optionally update total display here
+                    }
+                });
         } else {
-            alert(data.message);  // Invalid coupon
+            alert(data.message);
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert("An error occurred while verifying the coupon code.");
+        alert("An error occurred while applying the coupon.");
     });
 });
-
-document.getElementById('checkout-form').addEventListener('submit', function(event) {
-        const couponCode = document.getElementById('coupon-code').value.trim();
-
-        // Check if a coupon is applied before submitting the form
-        if (couponCode) {
-            event.preventDefault();  // Prevent form submission if coupon code is entered
-
-            // Trigger the coupon validation logic
-            document.getElementById('apply-coupon').click();
-        } else {
-            // If no coupon is applied, proceed with regular form submission
-            alert("Proceeding without coupon.");
-        }
-    });
 </script>
-
 
 
 </body>
