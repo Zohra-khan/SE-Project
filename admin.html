@@ -146,7 +146,7 @@
     };
 
     try {
-      const res = await fetch('add-product.php', {  // This points to your PHP script
+      const res = await fetch('add-product.php', { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
