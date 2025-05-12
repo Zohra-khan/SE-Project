@@ -41,7 +41,7 @@ $stmt->bind_param(
 
 if ($stmt->execute()) {
     if ($payment_method === 'credit card') {
-        header("Location: cardInfo.html");
+        header("Location: cardInfo.php");
     } else {
         header("Location: successfulPurchase.php");
     }
