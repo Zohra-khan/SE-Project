@@ -39,7 +39,7 @@ if (!empty($_POST)) {
     insert($conn, $sql);
 
     // Redirect or show message
-    echo "<script>alert('Product added successfully!'); window.location.href='admin.html';</script>";
+    echo "<script>alert('Product added successfully!'); window.location.href='admin_main.html';</script>";
 } else {
     echo "No data received.";
 }
