@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (isset($_SESSION['cart_message'])) {
+    echo "<script>alert('" . addslashes($_SESSION['cart_message']) . "');</script>";
+    unset($_SESSION['cart_message']);
+}
 $session_id = session_id();
 
 // Database connection parameters
@@ -28,7 +32,7 @@ $result = $stmt->get_result();
 
 // If the cart is empty, redirect to the empty cart page
 if ($result->num_rows === 0) {
-    header("Location: empty-cart.html");
+    header("Location: empty-cart.php");
     exit; // Always call exit after header redirection to stop further script execution
 }
 
@@ -63,7 +67,8 @@ $subtotal = 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 10px;
+      margin-bottom: 30px;
+margin-top: 30px;
     }
 
     .cart-heading i {
@@ -127,19 +132,19 @@ $subtotal = 0;
       margin-right: 10px;
     }
 
-    .remove-item-btn {
-      background-color: #f8d7da;
-      color: #721c24;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-bottom: 10px;
-    }
+.remove-item-btn {
+  background-color: #dc3545; /* Red background */
+  color: white; /* White text */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
 
-    .remove-item-btn:hover {
-      background-color: #f5c6cb;
-    }
+.remove-item-btn:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
 .qty-input {
   width: 40px;
   text-align: center;
@@ -148,6 +153,21 @@ $subtotal = 0;
   padding: 4px;
   border-radius: 4px;
 }
+
+.update-quantity-btn {
+  background-color: #28a745; /* Green background */
+  color: white; /* White text */
+ border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.update-quantity-btn:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
 
     .item-quantity {
       display: flex;
@@ -235,7 +255,7 @@ $subtotal = 0;
 </head>
 <body>
 
-  <iframe src="header.html" style="height:150px;" scrolling="no"></iframe>
+<?php include 'header.php'; ?>
 
 <div class="container">
   <!-- Heading -->
@@ -262,13 +282,12 @@ $subtotal = 0;
         <button class="remove-item-btn" type="submit">Remove</button>
       </form>
 
-      <!-- Update Quantity Form -->
-      <form method="POST" action="update_quantity.php">
+<!-- Update Quantity Form -->
+<form method="POST" action="update_quantity.php">
   <input type="hidden" name="product_code" value="<?= htmlspecialchars($item['product_code']) ?>">
   <input type="number" name="quantity" value="<?= $item['quantity'] ?>" min="1" required class="qty-input">
-  <button class="remove-item-btn" type="submit">Update Quantity</button>
+  <button class="update-quantity-btn" type="submit">Update Quantity</button>
 </form>
-
     </div>
   </div>
   <?php endwhile; ?>
