@@ -7,41 +7,54 @@ $username = "root";
 $password = "";
 $database = "soidhaga-products";
 
-// Create DB connection
 $conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
 if ($conn->connect_error) {
     echo json_encode(['status' => 'error', 'message' => 'Database connection failed.']);
     exit;
 }
 
-// --- CHECK IF DISCOUNT IS STORED IN SESSION ---
-if (!isset($_SESSION['coupon_discount'])) {
-    echo json_encode(['status' => 'error', 'message' => 'No discount found in session.']);
+// --- CHECK IF COUPON CODE IS SET ---
+if (!isset($_SESSION['coupon_code'])) {
+    echo json_encode(['status' => 'error', 'message' => 'No coupon code found in session.']);
     exit;
 }
 
-$discount = floatval($_SESSION['coupon_discount']);
+$couponCode = $_SESSION['coupon_code'];
 
-// --- APPLY DISCOUNT TO ALL CART ITEMS ---
-$updateSql = "UPDATE cart SET total_price = total_price * (1 - ? / 100)";
+// --- FETCH DISCOUNT FROM COUPONS TABLE ---
+$couponSql = "SELECT discount FROM coupons WHERE coupon_code = ?";
+$couponStmt = $conn->prepare($couponSql);
+$couponStmt->bind_param("s", $couponCode);
+$couponStmt->execute();
+$couponResult = $couponStmt->get_result();
+
+if ($couponResult->num_rows === 0) {
+    echo json_encode(['status' => 'error', 'message' => 'Invalid coupon code.']);
+    exit;
+}
+
+$couponRow = $couponResult->fetch_assoc();
+$discount = floatval($couponRow['discount']); // e.g., 0.3 = 30% off
+
+// Optional: store discount in session for later use
+$_SESSION['coupon_discount'] = $discount;
+
+// --- APPLY DISCOUNT TO CART FOR THIS SESSION ---
+$session_id = session_id();
+$updateSql = "UPDATE cart SET total_price = total_price * (1 - ?) WHERE session_id = ?";
 $updateStmt = $conn->prepare($updateSql);
 
-// Check if the statement was prepared successfully
 if ($updateStmt === false) {
-    echo json_encode(['status' => 'error', 'message' => 'Error preparing update query.']);
+    echo json_encode(['status' => 'error', 'message' => 'Failed to prepare cart update query.']);
     exit;
 }
 
-// Bind the discount parameter and execute the update
-$updateStmt->bind_param("d", $discount); // "d" means double
+$updateStmt->bind_param("ds", $discount, $session_id);
 if ($updateStmt->execute()) {
-    // After successfully applying the discount, redirect back to checkout.php
-    header("Location: checkout.php");
-    exit();
+    echo json_encode(['status' => 'success', 'message' => 'Coupon applied to cart successfully.']);
+    exit;
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'Failed to update cart total prices.']);
-    exit();
+    echo json_encode(['status' => 'error', 'message' => 'Failed to apply discount.']);
+    exit;
 }
 ?>
