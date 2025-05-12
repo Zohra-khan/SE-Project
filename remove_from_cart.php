@@ -15,7 +15,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the product_code (or cart_id) is provided
+// Check if the product_code is provided
 if (isset($_POST['product_code'])) {
     $product_code = $_POST['product_code'];
     $session_id = session_id();
@@ -24,31 +24,33 @@ if (isset($_POST['product_code'])) {
     $deleteQuery = "DELETE FROM cart WHERE product_code = ? AND session_id = ?";
     $stmt = $conn->prepare($deleteQuery);
     $stmt->bind_param("ss", $product_code, $session_id);
-    $stmt->execute();
-
-    // Check if the query was successful
-    if ($stmt->affected_rows > 0) {
-        // Successfully removed from the database, now remove from the session as well
+    
+    if ($stmt->execute()) {
+        // Also remove from the session cart array
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $index => $item) {
                 if ($item['product_code'] == $product_code) {
-                    unset($_SESSION['cart'][$index]); // Remove item from session
+                    unset($_SESSION['cart'][$index]);
                     break;
                 }
             }
-            // Re-index the session array to prevent gaps
-            $_SESSION['cart'] = array_values($_SESSION['cart']);
+            $_SESSION['cart'] = array_values($_SESSION['cart']); // Re-index
         }
-        // Redirect to the cart page after removal
-        header("Location: cart.php");
-        exit;
+
+        $_SESSION['cart_message'] = "Item removed from cart.";
     } else {
-        echo "Failed to remove product from the cart.";
+        $_SESSION['cart_message'] = "Error: " . $stmt->error;
     }
+
+    $stmt->close();
 } else {
-    echo "Invalid request.";
+    $_SESSION['cart_message'] = "Error: Product code is missing.";
 }
 
 // Close the database connection
 $conn->close();
+
+// Redirect back to cart page
+header("Location: cart.php");
+exit;
 ?>
