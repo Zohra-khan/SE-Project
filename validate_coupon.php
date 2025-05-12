@@ -30,7 +30,7 @@ if (isset($_POST['coupon_code'])) {
         echo json_encode([
             'status' => 'valid',
             'discount' => $row['discount'],
-            'message' => "Coupon code $coupon_code applied! You get " . $row['discount'] . "% off!"
+'message' => "Coupon code $coupon_code applied! You get " . ($row['discount'] * 100) . "% off!"
         ]);
     } else {
         // Coupon code is invalid
