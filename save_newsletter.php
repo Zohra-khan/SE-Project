@@ -21,7 +21,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
 
 if ($stmt->execute()) {
-    echo "<script>window.parent.location.href = 'submission.html';</script>";
+    echo "<script>window.parent.location.href = 'submission.php';</script>";
     exit();
 }
 else {
