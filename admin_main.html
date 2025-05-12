@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SoiDhaga Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: #fff;
+      border-bottom: 2px solid pink;
+      padding: 16px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 100px;
+      width: 200px;
+    }
+
+    .weave-banner {
+      position: relative;
+      width: 100%;
+    }
+
+  .weave-banner img {
+    width: 100%;
+    height: 30%;  /* Adjusted height */
+  }
+
+
+    .admin-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 40px;
+      color: white;
+      font-family: 'Times New Roman', Times, serif;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 12px 24px;
+      border-radius: 10px;
+    }
+
+    .dashboard-links {
+      display: flex;
+      justify-content: center;
+      margin: 40px auto;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .dash-card {
+      text-align: center;
+      background: white;
+      border: 2px solid #d63384;
+      color: #d63384;
+      padding: 24px 32px;
+      width: 220px;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .dash-card:hover {
+      background-color: #d63384;
+      color: white;
+    }
+
+    /* Footer Styles */
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+      background-color: #f8f8f8;
+      border-top: 2px solid pink;
+    }
+
+    .footer-left,
+    .footer-right,
+    .footer-branches,
+    .footer-partners {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-left img {
+      height: 110px;
+      width: 200px;
+      margin: 0 auto;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .social-icons a {
+      color: black;
+      margin: 0 8px;
+      text-decoration: none;
+    }
+
+    .footer-right ul,
+    .footer-branches ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-right a {
+      text-decoration: none;
+      color: black;
+      font-size: 14px;
+    }
+
+    .footer-right a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-branches h3,
+    .footer-partners h3,
+    .footer-partners h4 {
+      color: maroon;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .footer-branches li,
+    .footer-partners li {
+      color: grey;
+      margin: 5px 0;
+    }
+
+    .partner-logos img {
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+
+    .contact-info div {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+    }
+
+    .contact-info img {
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .footer-copy {
+      text-align: center;
+      margin-top: 15px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: black;
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+        text-align: center;
+      }
+
+      .footer-left,
+      .footer-right,
+      .footer-branches,
+      .footer-partners {
+        align-items: center;
+      }
+
+      .partner-logos {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="SoiDhaga1.png" alt="SoiDhaga Logo">
+    </div>
+  </header>
+
+  <!-- Banner Section -->
+  <div class="weave-banner">
+    <img src="Weave.png" alt="Weaving Threads">
+    <div class="admin-title">Admin Dashboard</div>
+  </div>
+
+  <!-- Dashboard Links -->
+  <div class="dashboard-links">
+    <a class="dash-card" href="add-product.php">➕ Add Product</a>
+    <a class="dash-card" href="remove_product.php">❌ Remove Product</a>
+    <a class="dash-card" href="admin-queries.php">💬 Respond to Queries</a>
+  </div>
+
+  <footer style="background-color: #f8f8f8; border-top: 2px solid pink; padding: 15px 0; font-family: Arial, sans-serif;">
+    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; font-size: 13px; line-height: 1.5;">
+  
+      <!-- Logo & Socials -->
+      <div style="flex: 1 1 220px; text-align: left; padding: 10px;">
+        <img src="SoiDhaga1.png" alt="SoiDhaga Logo" style="height: 60px; width: 120px;">
+        <div style="margin-top: 8px;">
+          <a href="https://www.instagram.com/zohrakhansep" target="_blank" style="margin-right: 8px; color: black;"><i class="fab fa-instagram fa-sm"></i></a>
+          <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank" style="margin-right: 8px; color: black;"><i class="fab fa-youtube fa-sm"></i></a>
+          <a href="https://www.linkedin.com/in/zohra-khan-781860362" target="_blank" style="color: black;"><i class="fab fa-linkedin fa-sm"></i></a>
+        </div>
+      </div>
+  
+      <!-- Branches -->
+      <div style="flex: 1 1 150px; padding: 10px;">
+        <strong style="color: maroon;">📍 Locations</strong>
+        <ul style="list-style: none; padding-left: 0; margin: 8px 0 0 0;">
+          <li>Lahore</li>
+          <li>Islamabad</li>
+          <li>Karachi</li>
+          <li>London</li>
+        </ul>
+      </div>
+  
+      <!-- Suppliers -->
+      <div style="flex: 1 1 150px; padding: 10px;">
+        <strong style="color: maroon;">🔗 Suppliers</strong>
+        <ul style="list-style: none; padding-left: 0; margin: 8px 0 0 0;">
+          <li>Siddiq Textile</li>
+          <li>Al-Raheem</li>
+          <li>Nishat Group</li>
+          <li>Kohinoor</li>
+        </ul>
+      </div>
+  
+      <!-- Contact + Partners -->
+      <div style="flex: 1 1 220px; padding: 10px;">
+        <strong style="color: maroon;">📞 Contact</strong>
+        <div style="margin-top: 6px;">
+          <div><img src="mailfooter.png" alt="Email" style="height: 14px; vertical-align: middle;"> soiDhaga@gmail.com</div>
+          <div style="margin-top: 4px;"><img src="phonefooter.png" alt="Phone" style="height: 14px; vertical-align: middle;"> 111-222-333</div>
+        </div>
+        <div style="margin-top: 10px;">
+          <strong style="color: maroon;">🤝 Partners</strong><br>
+          <img src="visa.png" alt="Visa" style="height: 20px; margin-right: 5px;">
+          <img src="masterCard.png" alt="MC" style="height: 20px; margin-right: 5px;">
+          <img src="payPal.png" alt="PayPal" style="height: 20px;">
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 10px; font-size: 12px; color: #555;">
+      &copy; 2025 SoiDhaga. All rights reserved.
+    </div>
+  </footer>
+  
