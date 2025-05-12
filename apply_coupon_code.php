@@ -34,9 +34,8 @@ if ($couponResult->num_rows === 0) {
 }
 
 $couponRow = $couponResult->fetch_assoc();
-$discount = floatval($couponRow['discount']); // e.g., 0.3 = 30% off
+$discount = floatval($couponRow['discount']); 
 
-// Optional: store discount in session for later use
 $_SESSION['coupon_discount'] = $discount;
 
 // --- APPLY DISCOUNT TO CART FOR THIS SESSION ---
